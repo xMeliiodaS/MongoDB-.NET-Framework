@@ -80,7 +80,7 @@ namespace WindowsFormsApp1
             dataGridView1.DataSource = loadedProducts;
         }
 
-        public void btn_InsertProduct_Click(object sender, EventArgs e)
+        public void Btn_InsertProduct_Click(object sender, EventArgs e)
         {
             // Stage 1: Take the data out of the screen
             Models.Product productUponTheScreen = GetProductUponTheScreenAlone();
@@ -130,7 +130,7 @@ namespace WindowsFormsApp1
             return productFromScreen;
         }
 
-        private void textBox_ProductCode_TextChanged(object sender, EventArgs e)
+        private void TextBox_ProductCode_TextChanged(object sender, EventArgs e)
         {
             
            /* if(String.IsNullOrEmpty(textBox_ProductCode.Text) ||
@@ -183,7 +183,7 @@ namespace WindowsFormsApp1
             }
         }*/
 
-        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             // Define a window object
             //UpdateOrDeleteWin detailsWin = new UpdateOrDeleteWin();
@@ -208,14 +208,14 @@ namespace WindowsFormsApp1
             LoadProduct();
         }
 
-        private void btn_Refresh_Click(object sender, EventArgs e)
+        private void Btn_Refresh_Click(object sender, EventArgs e)
         {
             LoadProduct();
             textBox_FilterByCode.Text = string.Empty;
             textBox_FilterByName.Text = string.Empty;
         }
 
-        private void btn_SpicificFilterByCode_Click(object sender, EventArgs e)
+        private void Btn_SpicificFilterByCode_Click(object sender, EventArgs e)
         {
             string requestedProductCode = textBox_FilterByCode.Text;
 
@@ -232,7 +232,7 @@ namespace WindowsFormsApp1
             dataGridView1.DataSource = products; // Present the results
         }
 
-        private void btn_FilterByName_Click(object sender, EventArgs e)
+        private void Btn_FilterByName_Click(object sender, EventArgs e)
         {
             // Read the data from the screen
             string requestedProductName = textBox_FilterByName.Text;
@@ -245,7 +245,7 @@ namespace WindowsFormsApp1
             dataGridView1.DataSource = products;
         }
 
-        private void btn_FilterByPrice_EQ_Click(object sender, EventArgs e)
+        private void Btn_FilterByPrice_EQ_Click(object sender, EventArgs e)
         {
             string requestedProductPrice = textBox_FilterByPrice.Text;
             FilterDefinition<Models.Product> whereCriteriaByPrice =
@@ -257,7 +257,7 @@ namespace WindowsFormsApp1
 
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox1.Checked)
             {
@@ -276,7 +276,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void btn_FilterByPrice_LTE_Click(object sender, EventArgs e)
+        private void Btn_FilterByPrice_LTE_Click(object sender, EventArgs e)
         {
             string requestedProductPrice = textBox_FilterByPrice.Text;
             FilterDefinition<Models.Product> whereCriteriaByPrice =
@@ -287,7 +287,7 @@ namespace WindowsFormsApp1
             dataGridView1.DataSource = products;
         }
 
-        private void btn_FilterByPrice_In_Click(object sender, EventArgs e)
+        private void Btn_FilterByPrice_In_Click(object sender, EventArgs e)
         {
             /*string requestedProductPrices = textBox_FilterByPrice.Text; // Get the entered product prices as a string
             string[] priceArray = requestedProductPrices.Split(','); // Split the string into an array of individual price strings
@@ -329,7 +329,7 @@ namespace WindowsFormsApp1
             dataGridView1.DataSource = products;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             string requestedProductCode = textBox_FilterByCode_AND.Text;
             string requestedProductName = textBox_FilterByName_AND.Text;
@@ -351,8 +351,7 @@ namespace WindowsFormsApp1
 
             if (!string.IsNullOrWhiteSpace(requestedProductPrice))
             {
-                double parsedPrice;
-                if (double.TryParse(requestedProductPrice, out parsedPrice))
+                if (double.TryParse(requestedProductPrice, out double parsedPrice))
                 {
                     FilterDefinition<Models.Product> priceFilter = Builders<Models.Product>.Filter.Lte(prod => prod.Price, parsedPrice);
                     whereCriteria &= priceFilter;
@@ -363,7 +362,7 @@ namespace WindowsFormsApp1
             dataGridView1.DataSource = products;
         }
 
-        private void btn_bulkInsert_Click(object sender, EventArgs e)
+        private void Btn_bulkInsert_Click(object sender, EventArgs e)
         {
             string[] productDetails;
             Models.Product product;
@@ -371,8 +370,7 @@ namespace WindowsFormsApp1
 
             // Stage1 : using System.IO.Path - read all the lines which are inside the file in the path
             string fullPath = System.IO.Path.GetFullPath(externalFile);
-            string[] csvLines = null;
-
+            string[] csvLines;
             try
             {
                 csvLines = System.IO.File.ReadAllLines(fullPath);
@@ -398,7 +396,7 @@ namespace WindowsFormsApp1
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             /*// Stage1 : Compose the where criteria
             FilterDefinition<Models.Product> whereCriteriaCode1 = null;
